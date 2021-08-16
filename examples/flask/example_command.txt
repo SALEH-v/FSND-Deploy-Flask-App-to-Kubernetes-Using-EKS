@@ -1,0 +1,60 @@
+Fork and clone the repo
+Fork this repository to your GitHub account. After forking, you can clone it locally by running the following commands in your terminal/WSL/GitBash:
+
+# Clone the repository to your local system
+git clone https://github.com/USERNAME/FSND-Deploy-Flask-App-to-Kubernetes-Using-EKS
+cd FSND-Deploy-Flask-App-to-Kubernetes-Using-EKS
+
+# See the content in the current directory. 
+ls
+
+
+
+
+
+
+
+# 1- move to the dir file
+
+cd "/examples/flask"
+
+-----------------------------------------------------------------------------
+
+# 2- Build an image, Build the image from the same directory using the command
+
+docker build -t test .
+
+(Here, the -t flag is an alternate way of writing --tag. Don't forget to put a period (.) at the end of the command. It tells the build command to look out for the Dockerfile in the current directory.)
+
+Check the list of images:
+
+docker image ls
+-------------------------------------------------------------------------------
+
+# 3- Create and run a container, Once the image is built, you can run the container with the command:
+
+docker run --name myFlaskContainer  -p 80:8080 test
+
+
+(In this command, you are mapping port 80 of your local machine to the port 8080 of the container running the flask application. If your port 80 is already in use by other application, feel free to use any other port number, such as 9090.)
+
+--------------------------------------------------------------------------------
+# 4- Access the application, Open a new terminal, and Curl the endpoint
+
+curl http://127.0.0.1:80/  or  Alternatively, you can check your browser with http://127.0.0.1:80/
+
+
+---------------------------------------------------------------------------------
+# 7- clean-up, Stop and remove the container:
+
+docker ps
+docker container stop <container_ID>
+
+Further, you can remove the container and image from your local machine as:
+
+docker container rm <container_Id>
+docker image ls
+docker image rm <image_Id>
+
+--------------------------------------------------------------------------------
+
